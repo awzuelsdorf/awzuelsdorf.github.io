@@ -4,7 +4,7 @@
 }
 
 #menuTitle {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-family: Helvetica;
   text-align: center;
   font-size: 35px;
@@ -71,7 +71,7 @@ div.content:hover {
   }
   .col-lg-12 {
     width: 100%;
-  }
+  } 
 }
 
 /********** Medium devices only **********/
@@ -159,6 +159,12 @@ div.content:hover {
   }
   .col-sm-12 {
     width: 100%;
+  }
+  #menuTitle {
+    margin-bottom: 10px;
+    font-family: Arial;
+    text-align: left;
+    font-size: 25px;
   }
 }
 
