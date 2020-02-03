@@ -2,8 +2,12 @@
 * {
   box-sizing: border-box;
 }
-h1 {
+
+#menuTitle {
   margin-bottom: 15px;
+  font-family: Helvetica;
+  text-align: center;
+  font-size: 35px;
 }
 
 div.content {
@@ -12,7 +16,13 @@ div.content {
   width: 100%;
   height: 150px;
   font-family: Helvetica;
+  font-size: 1em;
   color: white;
+}
+
+div.content:hover {
+  overflow-y: scroll;
+  cursor: ns-resize;
 }
 
 /* Simple Responsive Framework. */
@@ -155,19 +165,17 @@ div.content {
   }
 }
 
-h1 {
-  text-align: center;
-}
-
 p.planInfo {
-  margin-top: 40px;
+  margin-top: 50px;
   margin-left: 10px;
   margin-right: 10px;
+  font-size: 20px;
 }
 
 p.title {
   background-color: #0000A2;
   float: right;
+  font-size: 25px;
   padding-top: 5px;
   margin: 0px 0px 10px 0px;
   display: inline-block;
