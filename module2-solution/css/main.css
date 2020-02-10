@@ -18,6 +18,52 @@ div.content {
   width: 100%;
 }
 
+p.planInfo {
+  margin-top: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+p.title {
+  background-color: #0000A2;
+  float: right;
+  font-size: 25px;
+  padding-top: 5px;
+  margin: 0px 0px 10px 0px;
+  display: inline-block;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+p.titleMobile {
+  background-color: #0000A2;
+  float: right;
+  font-size: 25px;
+  padding-top: 5px;
+  margin: 0px 0px 10px 0px;
+  display: inline-block;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+h1.menuTitleMobile {
+  margin-bottom: 10px;
+  font-family: serif;
+  text-align: left;
+  font-size: 20px;
+}
+
+h1.menuTitle{
+  margin-bottom: 10px;
+  font-family: Helvetica;
+  text-align: center;
+  font-size: 35px;
+}
+
+
 /********** Large devices only **********/
 @media (min-width: 992px) {
   .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
@@ -60,19 +106,14 @@ div.content {
   .col-lg-12 {
     width: 100%;
   }
-  h1.menuTitle {
-    margin-bottom: 10px;
-    font-family: Helvetica;
-    text-align: center;
-    font-size: 35px;
-    opacity: 100%;
-  }
   h1.menuTitleMobile {
-    margin-bottom: 10px;
-    font-family: serif;
-    text-align: left;
-    font-size: 20px;
-    opacity: 0%;
+    display: none;
+  }
+  h1.menuTitle {
+    display: block;
+  }
+  p.titleMobile {
+    display: none;
   }
 }
 
@@ -118,19 +159,14 @@ div.content {
   .col-md-12 {
     width: 100%;
   }
-  h1.menuTitle {
-    margin-bottom: 10px;
-    font-family: Helvetica;
-    text-align: center;
-    font-size: 35px;
-    opacity: 100%;
-  }
   h1.menuTitleMobile {
-    margin-bottom: 10px;
-    font-family: serif;
-    text-align: left;
-    font-size: 20px;
-    opacity: 0%;
+    display: none;
+  }
+  h1.menuTitle {
+    display: block;
+  }
+  p.titleMobile {
+    display: none;
   }
 }
 
@@ -176,43 +212,28 @@ div.content {
   .col-sm-12 {
     width: 100%;
   }
-  h1.menuTitleMobile {
-    margin-bottom: 10px;
-    font-family: serif;
-    text-align: left;
-    font-size: 20px;
-    opacity: 100%;
-  }
   h1.menuTitle{
-    margin-bottom: 10px;
-    font-family: Helvetica;
-    text-align: center;
-    font-size: 35px;
-    opacity: 0%;
+    display: none;
+  }
+  h1.menuTitleMobile {
+    display: block;
+  }
+  p.title {
+    display: none;
+  }
+  p.titleMobile {
+    display: block;
   }
 }
 
-p.planInfo {
-  margin-top: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
-  font-size: 20px;
-}
-
-p.title {
-  background-color: #0000A2;
-  float: right;
-  font-size: 25px;
-  padding-top: 5px;
-  margin: 0px 0px 10px 0px;
-  display: inline-block;
-  padding-bottom: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+h1.menuTitle{
+  margin-bottom: 10px;
+  font-family: Helvetica;
+  text-align: center;
+  font-size: 35px;
 }
 
 div.content:hover {
   overflow-y: scroll;
   cursor: ns-resize;
 }
-
