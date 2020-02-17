@@ -1,3 +1,3 @@
 #! /bin/bash
 
-./node_modules/.bin/browser-sync start --server --directory --files "*"
+./node_modules/.bin/browser-sync start --server --directory --files "**/*"
