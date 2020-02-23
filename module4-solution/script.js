@@ -92,12 +92,12 @@ WARNING!!! WARNING!!!
 
     // Additional requirement 3
     function reducer(accumulator, currentValue) {
-	var firstLetter = name.charAt(0).toLowerCase();
+	var firstLetter = currentValue.charAt(0).toLowerCase();
 
         if (firstLetter === "j") {
-            accumulator["bye"].push(byeSpeaker.speakSimple(name));
+            accumulator["bye"].push(byeSpeaker.speakSimple(currentValue));
         } else {
-            accumulator["hello"].push(helloSpeaker.speakSimple(name));
+            accumulator["hello"].push(helloSpeaker.speakSimple(currentValue));
         }
     }
 
