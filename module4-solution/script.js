@@ -92,8 +92,6 @@ WARNING!!! WARNING!!!
 
     // Additional requirement 3
     function reducer(accumulator, currentValue) {
-        console.log(accumulator);
-
 	var firstLetter = currentValue.charAt(0).toLowerCase();
 
         if (firstLetter === "j") {
@@ -108,6 +106,9 @@ WARNING!!! WARNING!!!
     var initialValue = {hello: [], bye: []};
 
     names.reduce(reducer, initialValue);
+
+    // Line break for readability.
+    console.log("---------------------------");
 
     for (var i = 0; i < initialValue["hello"].length; ++i) {
         console.log(initialValue["hello"][i]);
