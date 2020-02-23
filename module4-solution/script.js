@@ -101,6 +101,8 @@ WARNING!!! WARNING!!!
         } else {
             accumulator["hello"].push(helloSpeaker.speakSimple(currentValue));
         }
+
+	return accumulator;
     }
 
     var initialValue = {hello: [], bye: []};
