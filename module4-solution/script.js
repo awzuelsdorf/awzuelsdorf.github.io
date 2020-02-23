@@ -34,16 +34,6 @@ WARNING!!! WARNING!!!
 // See Lecture 52, part 2
 // (Note, Step 2 will be done in the SpeakHello.js file.)
 
-function helloOrGoodbye(name) {
-    var firstLetter = name.charAt(0).toLowerCase();
-
-    if (firstLetter === "j") {
-        return byeSpeaker.speakSimple(name);
-    } else {
-        return helloSpeaker.speakSimple(name);
-    }
-}
-
 (function () {
     var names = ["Yaakov", "John", "Jen", "Jason", "Paul", "Frank", "Larry", "Paula", "Laura", "Jim"];
 
@@ -75,5 +65,51 @@ function helloOrGoodbye(name) {
         }
     }
 
-    console.log(names.map(helloOrGoodbye));
+    // Additional requirement 2b
+    function helloOrGoodbye(name) {
+        var firstLetter = name.charAt(0).toLowerCase();
+
+        if (firstLetter === "j") {
+            return byeSpeaker.speakSimple(name);
+        } else {
+            return helloSpeaker.speakSimple(name);
+        }
+    }
+
+    // Line break for readability.
+    console.log("---------------------------");
+
+    // Additional requirement 2b
+    var mapResult = names.map(helloOrGoodbye);
+
+    // Printing out the map for readability.
+    for (var i = 0; i < mapResult.length; ++i) {
+        console.log(mapResult[i]);
+    }
+
+    // Line break for readability.
+    console.log("---------------------------");
+
+    // Additional requirement 3
+    function reducer(accumulator, currentValue) {
+	var firstLetter = name.charAt(0).toLowerCase();
+
+        if (firstLetter === "j") {
+            accumulator["bye"].push(byeSpeaker.speakSimple(name));
+        } else {
+            accumulator["hello"].push(helloSpeaker.speakSimple(name));
+        }
+    }
+
+    var initialValue = {hello: [], bye: []};
+
+    names.reduce(reducer, initialValue);
+
+    for (var i = 0; i < initialValue["hello"].length; ++i) {
+        console.log(initialValue["hello"][i]);
+    }
+
+    for (var i = 0; i < initialValue["bye"].length; ++i) {
+        console.log(initialValue["bye"][i]);
+    }
 })();
