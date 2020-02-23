@@ -92,6 +92,8 @@ WARNING!!! WARNING!!!
 
     // Additional requirement 3
     function reducer(accumulator, currentValue) {
+        console.log(accumulator);
+
 	var firstLetter = currentValue.charAt(0).toLowerCase();
 
         if (firstLetter === "j") {
