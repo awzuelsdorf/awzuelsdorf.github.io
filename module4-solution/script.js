@@ -87,9 +87,6 @@ WARNING!!! WARNING!!!
         console.log(mapResult[i]);
     }
 
-    // Line break for readability.
-    console.log("---------------------------");
-
     // Additional requirement 3
     function reducer(accumulator, currentValue) {
 	var firstLetter = currentValue.charAt(0).toLowerCase();
