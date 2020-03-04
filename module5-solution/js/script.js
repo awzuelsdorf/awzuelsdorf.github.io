@@ -139,11 +139,11 @@ function buildAndShowAboutHTML() {
       var i = 1;
 
       for (; i <= rating; ++i) {
-          aboutHtml = insertProperty(aboutHtml, "rating" + i, "o");
+          aboutHtml = insertProperty(aboutHtml, "class" + i, "fa fa-star");
       }
 
       for (; i <= 5; ++i) {
-          aboutHtml = insertProperty(aboutHtml, "rating" + i, "-");
+          aboutHtml = insertProperty(aboutHtml, "class" + i, "fa fa-star-o");
       }
       
       insertHtml("#main-content", insertProperty(aboutHtml, "rating_text", rating + "-star rating"));
