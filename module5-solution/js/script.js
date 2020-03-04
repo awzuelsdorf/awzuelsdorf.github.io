@@ -134,7 +134,7 @@ function buildAndShowAboutHTML() {
   $ajaxUtils.sendGetRequest(
     "snippets/about.html",
     function (aboutHtml) {
-      var rating = Math.floor(Math.random() * 4) + 1;
+      var rating = 1 + Math.floor(5 * Math.random()); //Generate random number between 1 and 5
 
       var i = 1;
 
