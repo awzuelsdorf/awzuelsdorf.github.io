@@ -23,8 +23,6 @@ var menuItemsUrl =
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
 
-var aboutUrl = "snippets/about.html";
-
 // Convenience function for inserting innerHTML for 'select'
 var insertHtml = function (selector, html) {
   var targetElem = document.querySelector(selector);
@@ -134,7 +132,7 @@ function buildAndShowAboutHTML() {
 
   // Load home snippet page
   $ajaxUtils.sendGetRequest(
-    aboutUrl,
+    "snippets/about.html",
     function (aboutHtml) {
       insertHtml("#main-content", aboutHtml);
     },
