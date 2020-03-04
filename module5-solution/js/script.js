@@ -23,6 +23,8 @@ var menuItemsUrl =
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
 
+var aboutHtml = "snippets/about.html",
+
 // Convenience function for inserting innerHTML for 'select'
 var insertHtml = function (selector, html) {
   var targetElem = document.querySelector(selector);
@@ -131,6 +133,19 @@ function buildAndShowHomeHTML (categories) {
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
 }
 
+// Builds HTML for the home page based on categories array
+// returned from the server.
+function buildAndShowAboutHTML() {
+
+  // Load home snippet page
+  $ajaxUtils.sendGetRequest(
+    aboutUrl,
+    function (aboutHtml) {
+      insertHtml("#main-content", aboutHtml);
+    },
+    false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
+}
+
 
 // Given array of category objects, returns a random category object.
 function chooseRandomCategory (categories) {
@@ -158,6 +173,12 @@ dc.loadMenuItems = function (categoryShort) {
   $ajaxUtils.sendGetRequest(
     menuItemsUrl + categoryShort,
     buildAndShowMenuItemsHTML);
+};
+
+// Load the about view
+dc.loadAboutView = function () {
+  showLoading("#main-content");
+  buildAndShowAboutHTML();
 };
 
 
