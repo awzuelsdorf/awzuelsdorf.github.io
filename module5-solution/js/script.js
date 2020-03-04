@@ -134,7 +134,19 @@ function buildAndShowAboutHTML() {
   $ajaxUtils.sendGetRequest(
     "snippets/about.html",
     function (aboutHtml) {
-      insertHtml("#main-content", insertProperty(aboutHtml, "rating_text", "4-star rating"));
+      var rating = Math.floor(Math.random() * 4) + 1;
+
+      var i = 1;
+
+      for (; i <= rating; ++i) {
+          aboutHtml = insertProperty(aboutHtml, "rating" + i, "o");
+      }
+
+      for (; i <= 5; ++i) {
+          aboutHtml = insertProperty(aboutHtml, "rating" + i, "-");
+      }
+      
+      insertHtml("#main-content", insertProperty(aboutHtml, "rating_text", rating + "-star rating"));
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
 }
