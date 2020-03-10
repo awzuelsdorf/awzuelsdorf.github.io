@@ -20,6 +20,8 @@
                     $scope.message = "Enjoy!";
                 }
             }
+
+            console.log($scope.message);
         }
     }]);
 })();
