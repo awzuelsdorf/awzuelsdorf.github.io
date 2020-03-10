@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <style>
       .message { font-size: 1.3em; font-weight: bold; }
+      .redborder { border-color: red; }
+      .greenborder { border-color: green; }
+      .border { border-color: black; }
     </style>
     <meta charset="utf-8">
     <script src="js/angular.js"></script>
@@ -24,7 +27,7 @@
       <div class="form-group">
         <button class="btn btn-default" ng-click="checkIfTooMuch()">Check If Too Much</button>
       </div>
-      <div class="form-group message">
+      <div class="form-group message {{border_type}}border">
         <!-- Your message can go here. -->
 	{{message}}
       </div>

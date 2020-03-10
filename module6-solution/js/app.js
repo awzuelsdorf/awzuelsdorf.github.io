@@ -16,8 +16,10 @@
 
                 if (itemsList.length > 3) {
                     $scope.message = "Too much!";
+                    $scope.borderType = "red";
                 } else {
                     $scope.message = "Enjoy!";
+                    $scope.borderType = "green";
                 }
             }
         }
