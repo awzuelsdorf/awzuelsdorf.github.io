@@ -16,7 +16,9 @@
                     return item.trim() != "";
                 });
 
-                if (itemsList.length > 3) {
+                if (itemsList.length == 0) {
+                    $scope.message = "Please enter data first";
+		} else if (itemsList.length > 3) {
                     $scope.message = "Too much!";
                 } else {
                     $scope.message = "Enjoy!";
