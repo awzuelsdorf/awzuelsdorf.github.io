@@ -10,7 +10,7 @@
             if ($scope.items == null || $scope.items == "") {
                 $scope.message = "Please enter data first";
             } else {
-                var itemsList = items.split(",").filter(function (item) {
+                var itemsList = $scope.items.split(",").filter(function (item) {
                     return item.trim() != "";
                 });
 
