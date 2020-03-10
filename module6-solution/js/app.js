@@ -5,7 +5,7 @@
     var dependencies = [];
     var module = angular.module("application_name", dependencies)
 
-    module.controller("controller_name", controllerLogic);
+    module.controller("controller_name", ["$scope", controllerLogic]);
 
     var controllerLogic = function ($scope) {
         $scope.checkIfTooMuch = function () {
@@ -24,6 +24,4 @@
             }
         }
     }
-
-    controllerLogic.$inject = ["$scope"];
 })();
