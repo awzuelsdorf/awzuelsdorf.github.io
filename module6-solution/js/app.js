@@ -5,9 +5,7 @@
     var dependencies = [];
     var module = angular.module("application_name", dependencies)
 
-    module.controller("controller_name", ["$scope", controllerLogic]);
-
-    var controllerLogic = function ($scope) {
+    module.controller("controller_name", ["$scope", function ($scope) {
         $scope.checkIfTooMuch = function () {
             if ($scope.items == null || $scope.items == "") {
                 $scope.message = "Please enter data first";
@@ -23,5 +21,5 @@
                 }
             }
         }
-    }
+    }]);
 })();
