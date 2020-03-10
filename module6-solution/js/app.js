@@ -9,6 +9,8 @@
         $scope.checkIfTooMuch = function () {
             if ($scope.items == null || $scope.items == "") {
                 $scope.message = "Please enter data first";
+                $scope.borderType = "red";
+                $scope.color = "red";
             } else {
                 var itemsList = $scope.items.split(",").filter(function (item) {
                     return item.trim() != "";
@@ -16,11 +18,12 @@
 
                 if (itemsList.length > 3) {
                     $scope.message = "Too much!";
-                    $scope.borderType = "red";
                 } else {
                     $scope.message = "Enjoy!";
-                    $scope.borderType = "green";
                 }
+
+                $scope.borderType = "green";
+                $scope.color = "green";
             }
         }
     }
