@@ -18,14 +18,18 @@
 
                 if (itemsList.length == 0) {
                     $scope.message = "Please enter data first";
-		} else if (itemsList.length > 3) {
-                    $scope.message = "Too much!";
-                } else {
-                    $scope.message = "Enjoy!";
-                }
+                    $scope.borderType = "red";
+                    $scope.color = "red";
+		} else {
+                    if (itemsList.length > 3) {
+                        $scope.message = "Too much!";
+                    } else {
+                        $scope.message = "Enjoy!";
+                    }
 
-                $scope.borderType = "green";
-                $scope.color = "green";
+                    $scope.borderType = "green";
+                    $scope.color = "green";
+                }
             }
         }
     }
