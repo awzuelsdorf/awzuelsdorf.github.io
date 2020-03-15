@@ -37,6 +37,7 @@
 	     <!--<li ng-repeat="item in tbcontrol.toBuy">Buy {{ item.quantity }} {{ item.unit }} of {{ item.name }}<button class="btn btn-default" ng-click="tbcontrol.buyItem($index)"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>-->
      </ul>
      <div ng-if="!tbcontrol.toBuy" class="emptyMessage">Everything is bought!</div>
+     <div ng-if="tbcontrol.toBuy" class="emptyMessage">Not everything is bought!</div>
     </div>
 
     <!-- Already Bought List -->
@@ -45,7 +46,8 @@
      <ul ng-if="abcontrol.bought">
 	     <!--<li ng-repeat="item in abcontrol.bought">Bought {{ item.quantity }} {{ item.unit }} of {{ item.name }}</li>-->
      </ul>
-     <!--<div class="emptyMessage" ng-if="!abcontrol.bought">Nothing bought yet.</div>-->
+     <div class="emptyMessage" ng-if="!abcontrol.bought">Nothing bought yet.</div>
+     <div class="emptyMessage" ng-if="abcontrol.bought">Something bought.</div>
     </div>
   </div>
 </div>
