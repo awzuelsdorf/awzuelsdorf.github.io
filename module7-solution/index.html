@@ -45,7 +45,7 @@
      <ul ng-if="abcontrol.bought">
 	     <!--<li ng-repeat="item in abcontrol.bought">Bought {{ item.quantity }} {{ item.unit }} of {{ item.name }}</li>-->
      </ul>
-     <div class="emptyMessage" ng-if="abcontrol.bought">Nothing bought yet.</div>
+     <div class="emptyMessage" ng-if="!abcontrol.bought">Nothing bought yet.</div>
     </div>
   </div>
 </div>
