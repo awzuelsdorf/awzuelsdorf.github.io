@@ -26,7 +26,7 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
 }
 
 
-function ShoppingListService() {
+function ShoppingListCheckOffService() {
   var service = this;
 
   // List of shopping items
