@@ -16,6 +16,7 @@ function ToBuyController(ShoppingListCheckOffService) {
   buyer.buyItem = function (index) {
     ShoppingListCheckOffService.buyItem(index);
   }
+  console.log("buyer ready!");
 }
 
 AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
@@ -23,6 +24,7 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
   var checker = this;
 
   checker.items = ShoppingListCheckOffService.getBoughtItems();
+  console.log("checker ready!");
 }
 
 
@@ -58,6 +60,8 @@ function ShoppingListCheckOffService() {
   service.getUnboughtItems = function () {
     return unboughtItems;
   };
+
+  console.log("Service ready!");
 }
 
 })();
