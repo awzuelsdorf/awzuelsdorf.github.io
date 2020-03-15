@@ -9,17 +9,17 @@
   </head>
   <body>
     <h1>Custom Service</h1>
-    <div ng-controller='ToBuyController as itemAdder'>
-      <input type="text" ng-model="itemAdder.itemName" placeholder="item name">
-      <input type="text" ng-model="itemAdder.itemQuantity" placeholder="quantity">
-      <button ng-click="itemAdder.addItem();">Add Item To Shopping List</button>
+    <div ng-controller='ToBuyController as itemBuyer'>
+	<li ng-repeat="item in itemBuyer.items">
+          {{ item.quantity }} of {{ item.name }}
+          <button ng-click="itemBuyer.buyItem($index);">Buy Item</button>
+        </li>
     </div>
 
-    <div ng-controller='AlreadyBoughtController as showList'>
+    <div ng-controller='AlreadyBoughtController as boughtList'>
       <ol>
-        <li ng-repeat="item in showList.items">
+        <li ng-repeat="item in boughtList.items">
           {{ item.quantity }} of {{ item.name }}
-          <button ng-click="showList.removeItem($index);">Remove Item</button>
         </li>
       </ol>
     </div>
