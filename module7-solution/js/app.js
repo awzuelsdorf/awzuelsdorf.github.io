@@ -1,67 +1,57 @@
 (function () {
 'use strict';
 
-angular.module('ShoppingListCheckOff', [])
-.controller('ToBuyController', ToBuyController)
-.controller('AlreadyBoughtController', AlreadyBoughtController)
-.service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+angular.module('ShoppingListApp', [])
+.controller('ShoppingListAddController', ShoppingListAddController)
+.controller('ShoppingListShowController', ShoppingListShowController)
+.service('ShoppingListService', ShoppingListService);
 
-ToBuyController.$inject = ['ShoppingListCheckOffService'];
+ShoppingListAddController.$inject = ['ShoppingListService'];
+function ShoppingListAddController(ShoppingListService) {
+  var itemAdder = this;
 
-function ToBuyController(ShoppingListCheckOffService) {
-  var buyer = this;
+  itemAdder.itemName = "";
+  itemAdder.itemQuantity = "";
 
-  buyer.items = ShoppingListCheckOffService.getUnboughtItems();
-
-  buyer.buyItem = function (index) {
-    ShoppingListCheckOffService.buyItem(index);
+  itemAdder.addItem = function () {
+    ShoppingListService.addItem(itemAdder.itemName, itemAdder.itemQuantity);
   }
-  console.log("buyer ready!");
-}
-
-AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
-function AlreadyBoughtController(ShoppingListCheckOffService) {
-  var checker = this;
-
-  checker.items = ShoppingListCheckOffService.getBoughtItems();
-  console.log("checker ready!");
 }
 
 
-function ShoppingListCheckOffService() {
+ShoppingListShowController.$inject = ['ShoppingListService'];
+function ShoppingListShowController(ShoppingListService) {
+  var showList = this;
+
+  showList.items = ShoppingListService.getItems();
+
+  showList.removeItem = function (itemIndex) {
+    ShoppingListService.removeItem(itemIndex);
+  };
+}
+
+
+function ShoppingListService() {
   var service = this;
 
   // List of shopping items
-  var unboughtItems = [
-      {
-	      "name": "Cookies",
-	      "quantity" : 10,
-	      "unit" : "box(es)",
-	      "pricePerItem" : 4.50
-      },
-      {
-	      "name": "Pepto Bismol",
-	      "quantity" : 5,
-	      "unit" : "bottle(s)",
-	      "pricePerItem" : 2.00
-      }
-  ];
+  var items = [];
 
-  var boughtItems = [];
-
-  service.buyItem = function (index) {
-    boughtItems.push(unboughtItems.pop(index));
+  service.addItem = function (itemName, quantity) {
+    var item = {
+      name: itemName,
+      quantity: quantity
+    };
+    items.push(item);
   };
 
-  service.getBoughtItems = function () {
-    return boughtItems;
+  service.removeItem = function (itemIndex) {
+    items.splice(itemIndex, 1);
   };
 
-  service.getUnboughtItems = function () {
-    return unboughtItems;
+  service.getItems = function () {
+    return items;
   };
-
-  console.log("Service ready!");
 }
 
 })();
