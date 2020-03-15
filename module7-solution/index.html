@@ -33,18 +33,18 @@
     <!-- To Buy List -->
     <div class="col-md-6" ng-controller='ToBuyController as tbcontrol'>
      <h2>To Buy:</h2>
-     <ul ng-if="tbcontrol.toBuy">
-	     <!--<li ng-repeat="item in tbcontrol.toBuy">Buy {{ item.quantity }} {{ item.unit }} of {{ item.name }}<button class="btn btn-default" ng-click="tbcontrol.buyItem($index)"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>-->
+     <ul ng-if="tbcontrol.items">
+	     <li ng-repeat="item in tbcontrol.items">Buy {{ item.quantity }} {{ item.unit }} of {{ item.name }}<button class="btn btn-default" ng-click="tbcontrol.buyItem($index)"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
      </ul>
-     <div ng-if="!tbcontrol.toBuy" class="emptyMessage">Everything is bought!</div>
-     <div ng-if="tbcontrol.toBuy" class="emptyMessage">Not everything is bought!</div>
+     <div ng-if="!tbcontrol.items" class="emptyMessage">Everything is bought!</div>
+     <div ng-if="tbcontrol.items" class="emptyMessage">Not everything is bought!</div>
     </div>
 
     <!-- Already Bought List -->
     <div class="col-md-6" ng-controller='AlreadyBoughtController as abcontrol'>
      <h2>Already Bought:</h2>
-     <ul ng-if="abcontrol.bought">
-	     <!--<li ng-repeat="item in abcontrol.bought">Bought {{ item.quantity }} {{ item.unit }} of {{ item.name }}</li>-->
+     <ul ng-if="abcontrol.items">
+	     <li ng-repeat="item in abcontrol.items">Bought {{ item.quantity }} {{ item.unit }} of {{ item.name }}</li>
      </ul>
      <div class="emptyMessage" ng-if="!abcontrol.bought">Nothing bought yet.</div>
      <div class="emptyMessage" ng-if="abcontrol.bought">Something bought.</div>
