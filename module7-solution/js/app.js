@@ -13,6 +13,8 @@
         itemBuyer.buyItem = function (index) {
             ShoppingListCheckOffService.buyItem(index);
 	}
+
+	console.log(itemBuyer.toBuy);
     };
 
     toBuyControllerLogic.$inject = ["ShoppingListCheckOffService"];
@@ -23,6 +25,8 @@
         var itemBought = this;
 
         itemBought.bought = ShoppingListCheckOffService.getBoughtItems();
+
+	console.log(itemBought.bought);
     };
 
     alreadyBoughtControllerLogic.$inject = ["ShoppingListCheckOffService"];
