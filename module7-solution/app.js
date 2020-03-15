@@ -32,19 +32,23 @@ function ShoppingListCheckOffService() {
   var toBuy = [
 	  {
 		  "quantity": 60,
-		  "name": "burritos"
+		  "name": "burritos",
+		  "pricePerItem": 3.9
 	  },
 	  {
 		  "quantity": 90,
-		  "name": "tamales"
+		  "name": "tamales",
+		  "pricePerItem": 4.5
 	  },
 	  {
 		  "quantity": 100,
-		  "name": "tomatoes"
+		  "name": "tomatoes",
+		  "pricePerItem": 2.4
 	  },
 	  {
 		  "quantity": 80,
-		  "name": "jelly beanz"
+		  "name": "jelly beans",
+		  "pricePerItem": 1.1
 	  }
 
   ];
