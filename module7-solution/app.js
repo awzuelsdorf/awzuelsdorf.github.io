@@ -37,13 +37,23 @@ function ShoppingListCheckOffService() {
 	  {
 		  "quantity": 90,
 		  "name": "tamales"
+	  },
+	  {
+		  "quantity": 100,
+		  "name": "tomatoes"
+	  },
+	  {
+		  "quantity": 80,
+		  "name": "jelly beanz"
 	  }
+
   ];
 
   var bought = [];
 
   service.buyItem = function (index) {
-    bought.push(toBuy.pop(index));
+    var item = toBuy.splice(index, 1)[0];
+    bought.push(item);
   };
 
   service.getBoughtItems = function () {
