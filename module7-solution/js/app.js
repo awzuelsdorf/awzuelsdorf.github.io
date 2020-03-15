@@ -2,8 +2,7 @@
 (function () {
     'use strict';
 
-    var dependencies = [];
-    var module = angular.module("ShoppingListCheckOff", dependencies);
+    var module = angular.module("ShoppingListCheckOff", []).controller("ToBuyController", toBuyControllerLogic).controller("AlreadyBoughtController", alreadyBoughtControllerLogic).service("ShoppingListCheckOffService", ShoppingListCheckOffService);
 
     var toBuyControllerLogic = function ($scope) {
         var itemBuyer = this;
@@ -19,8 +18,6 @@
 
     toBuyControllerLogic.$inject = ["ShoppingListCheckOffService"];
 
-    module.controller("ToBuyController", toBuyControllerLogic);
-
     var alreadyBoughtControllerLogic = function (ShoppingListCheckOffService) {
         var itemBought = this;
 
@@ -30,8 +27,6 @@
     };
 
     alreadyBoughtControllerLogic.$inject = ["ShoppingListCheckOffService"];
-
-    module.controller("AlreadyBoughtController", alreadyBoughtControllerLogic);
 
     function ShoppingListCheckOffService() {
         var service = this;
@@ -54,17 +49,15 @@
         var bought = [];
 
         service.buyItem = function (itemIndex) {
-            service.bought.push(service.toBuy.pop(itemIndex));
+            bought.push(this.toBuy.pop(itemIndex));
 	}
 
         service.getUnboughtItems = function () {
-            return service.toBuy;
+            return toBuy;
 	}
 
         service.getBoughtItems = function () {
-            return service.bought;
+            return bought;
 	}
     }
-
-    module.service("ShoppingListCheckOffService", ShoppingListCheckOffService);
 })();

@@ -31,7 +31,7 @@
   <div class="row">
 
     <!-- To Buy List -->
-    <div class="col-md-6" ng-controller="ToBuyController as tbcontrol">
+    <div class="col-md-6" ng-controller='ToBuyController as tbcontrol'>
      <h2>To Buy:</h2>
      <ul ng-if="tbcontrol.toBuy">
 	     <!--<li ng-repeat="item in tbcontrol.toBuy">Buy {{ item.quantity }} {{ item.unit }} of {{ item.name }}<button class="btn btn-default" ng-click="tbcontrol.buyItem($index)"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>-->
@@ -41,7 +41,7 @@
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6" ng-controller="AlreadyBoughtController as abcontrol">
+    <div class="col-md-6" ng-controller='AlreadyBoughtController as abcontrol'>
      <h2>Already Bought:</h2>
      <ul ng-if="abcontrol.bought">
 	     <!--<li ng-repeat="item in abcontrol.bought">Bought {{ item.quantity }} {{ item.unit }} of {{ item.name }}</li>-->
