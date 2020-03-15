@@ -1,63 +1,63 @@
-//Use IIFE to prevent the need for local variables to enter the global scope.
 (function () {
-    'use strict';
+'use strict';
 
-    var module = angular.module("ShoppingListCheckOff", []).controller("ToBuyController", toBuyControllerLogic).controller("AlreadyBoughtController", alreadyBoughtControllerLogic).service("ShoppingListCheckOffService", ShoppingListCheckOffService);
+angular.module('ShoppingListCheckOff', [])
+.controller('ToBuyController', ToBuyController)
+.controller('AlreadyBoughtController', AlreadyBoughtController)
+.service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
-    var toBuyControllerLogic = function ($scope) {
-        var itemBuyer = this;
-        
-        itemBuyer.toBuy = ShoppingListCheckOffService.getUnboughtItems();
+ToBuyController.$inject = ['ShoppingListCheckOffService'];
 
-        itemBuyer.buyItem = function (index) {
-            ShoppingListCheckOffService.buyItem(index);
-	}
+function ToBuyController(ShoppingListCheckOffService) {
+  var buyer = this;
 
-	console.log(itemBuyer.toBuy);
-    };
+  buyer.items = ShoppingListService.getUnboughtItems();
 
-    toBuyControllerLogic.$inject = ["ShoppingListCheckOffService"];
+  buyer.buyItem = function (index) {
+    ShoppingListCheckOffService.buyItem(index);
+  }
+}
 
-    var alreadyBoughtControllerLogic = function (ShoppingListCheckOffService) {
-        var itemBought = this;
+AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+function AlreadyBoughtController(ShoppingListCheckOffService) {
+  var checker = this;
 
-        itemBought.bought = ShoppingListCheckOffService.getBoughtItems();
+  checker.items = ShoppingListService.getBoughtItems();
+}
 
-	console.log(itemBought.bought);
-    };
 
-    alreadyBoughtControllerLogic.$inject = ["ShoppingListCheckOffService"];
+function ShoppingListService() {
+  var service = this;
 
-    function ShoppingListCheckOffService() {
-        var service = this;
+  // List of shopping items
+  var unboughtItems = [
+      {
+	      "name": "Cookies",
+	      "quantity" : 10,
+	      "unit" : "box(es)",
+	      "pricePerItem" : 4.50
+      },
+      {
+	      "name": "Pepto Bismol",
+	      "quantity" : 5,
+	      "unit" : "bottle(s)",
+	      "pricePerItem" : 2.00
+      }
+  ];
 
-        var toBuy = [
-            {
-                "name": "Cookies",
-                "quantity": 10,
-                "unit": "boxes",
-                "pricePerItem": 4.50
-            },
-            {
-                "name": "Pepto Bismol",
-                "quantity": 3,
-                "unit": "bottles",
-                "pricePerItem": 10.90
-            },
-	];
+  var boughtItems = [];
 
-        var bought = [];
+  service.buyItem = function (index) {
+    boughtItems.push(unboughtItems.pop(index));
+  };
 
-        service.buyItem = function (itemIndex) {
-            bought.push(this.toBuy.pop(itemIndex));
-	}
+  service.getBoughtItems = function () {
+    return boughtItems;
+  };
 
-        service.getUnboughtItems = function () {
-            return toBuy;
-	}
+  service.getUnboughtItems = function () {
+    return unboughtItems;
+  };
+}
 
-        service.getBoughtItems = function () {
-            return bought;
-	}
-    }
 })();
