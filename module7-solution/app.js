@@ -18,7 +18,6 @@ function ShoppingListAddController(ShoppingListService) {
   }
 }
 
-
 ShoppingListShowController.$inject = ['ShoppingListService'];
 function ShoppingListShowController(ShoppingListService) {
   var showList = this;
