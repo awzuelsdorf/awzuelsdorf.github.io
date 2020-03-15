@@ -9,13 +9,13 @@
   </head>
   <body>
     <h1>Custom Service</h1>
-    <div ng-controller='ShoppingListAddController as itemAdder'>
+    <div ng-controller='ToBuyController as itemAdder'>
       <input type="text" ng-model="itemAdder.itemName" placeholder="item name">
       <input type="text" ng-model="itemAdder.itemQuantity" placeholder="quantity">
       <button ng-click="itemAdder.addItem();">Add Item To Shopping List</button>
     </div>
 
-    <div ng-controller='ShoppingListShowController as showList'>
+    <div ng-controller='AlreadyBoughtController as showList'>
       <ol>
         <li ng-repeat="item in showList.items">
           {{ item.quantity }} of {{ item.name }}
