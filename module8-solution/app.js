@@ -45,7 +45,7 @@ function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
 
   function displayCookieWarning() {
     // Using Angluar jqLite
-    /var warningElem = element.find("div");
+    var warningElem = element.find("div");
     console.log(warningElem);
     warningElem.css('display', 'block');
   }
