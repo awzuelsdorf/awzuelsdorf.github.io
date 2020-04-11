@@ -4,9 +4,9 @@
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
 .factory('MenuSearchFactory', MenuSearchFactory)
-.directive('shoppingList', NarrowItDown);
+.directive('shoppingList', ShoppingListDirective);
 
-function NarrowItDown() {
+function ShoppingListDirective() {
   var ddo = {
     templateUrl: 'shoppingList.html',
     scope: {
