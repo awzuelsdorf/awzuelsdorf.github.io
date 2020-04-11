@@ -15,17 +15,17 @@ function ShoppingListDirective() {
       myTitle: '@title',
       onRemove: '&'
     },
-    controller: NarrowItDownController,
+    controller: NarrowItDownDirectiveController,
     controllerAs: 'list',
     bindToController: true,
-    link: ShoppingListDirectiveLink
+    link: NarrowItDownDirectiveLink
   };
 
   return ddo;
 }
 
 
-function ShoppingListDirectiveLink(scope, element, attrs, controller) {
+function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
   console.log("Link scope is: ", scope);
   console.log("Controller instance is: ", controller);
   console.log("Element is: ", element);
@@ -67,7 +67,7 @@ function ShoppingListDirectiveLink(scope, element, attrs, controller) {
 }
 
 
-function NarrowItDownController() {
+function NarrowItDownDirectiveController() {
   var list = this;
 
   list.cookiesInList = function () {
