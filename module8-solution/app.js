@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('NarrowItDownApp', [])
-.controller('ShoppingListController', ShoppingListController)
+.controller('NarrowItDownController', NarrowItDownController)
 .factory('ShoppingListFactory', ShoppingListFactory)
 .directive('shoppingList', ShoppingListDirective);
 
@@ -15,7 +15,7 @@ function ShoppingListDirective() {
       myTitle: '@title',
       onRemove: '&'
     },
-    controller: ShoppingListDirectiveController,
+    controller: NarrowItDownController,
     controllerAs: 'list',
     bindToController: true,
     link: ShoppingListDirectiveLink
@@ -67,7 +67,7 @@ function ShoppingListDirectiveLink(scope, element, attrs, controller) {
 }
 
 
-function ShoppingListDirectiveController() {
+function NarrowItDownController() {
   var list = this;
 
   list.cookiesInList = function () {
@@ -83,8 +83,8 @@ function ShoppingListDirectiveController() {
 }
 
 
-ShoppingListController.$inject = ['ShoppingListFactory'];
-function ShoppingListController(ShoppingListFactory) {
+NarrowItDownController.$inject = ['ShoppingListFactory'];
+function NarrowItDownController(ShoppingListFactory) {
   var viewList = this;
 
   // Use factory to create new shopping list service

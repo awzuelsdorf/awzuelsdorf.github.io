@@ -12,7 +12,7 @@
     <h1>Directives: Manipulating the DOM with link()</h1>
 
     <!-- LIST #1 - unlimited items -->
-    <div id="list" ng-controller='ShoppingListController as list'>
+    <div id="list" ng-controller='NarrowItDownController as list'>
       <input type="text" ng-model="list.searchTerm" placeholder="search term">
       <button ng-click="list.searchItems();">Narrow it down for me!</button>
       <span>{{list.lastRemoved}}</span>
