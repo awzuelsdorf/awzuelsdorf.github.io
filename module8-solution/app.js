@@ -18,39 +18,10 @@ function ShoppingListDirective() {
     controller: NarrowItDownDirectiveController,
     controllerAs: 'list',
     bindToController: true,
-    link: NarrowItDownDirectiveLink
   };
 
   return ddo;
 }
-
-
-function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
-  console.log("Link scope is: ", scope);
-  console.log("Controller instance is: ", controller);
-  console.log("Element is: ", element);
-
-  scope.$watch('list.isEmptySearchResult()', function (newValue, oldValue) {
-    console.log("Old value: ", oldValue);
-    console.log("New value: ", newValue);
-
-    if (newValue === true) {
-      displayCookieWarning();
-    }
-    else {
-      removeCookieWarning();
-    }
-
-  });
-
-  function displayCookieWarning() {
-    // Using Angluar jqLite
-    var warningElem = element.find("div");
-    console.log(warningElem);
-    warningElem.css('display', 'block');
-  }
-}
-
 
 function NarrowItDownDirectiveController() {
   var list = this;
@@ -69,8 +40,7 @@ function NarrowItDownController(ShoppingListFactory) {
   var shoppingList = ShoppingListFactory();
 
   viewList.items = shoppingList.getItems();
-  var origTitle = "Shopping List #1";
-  viewList.title = origTitle + " (" + viewList.items.length + " items )";
+  viewList.title = "";
 
   viewList.searchTerm = "";
 
@@ -86,14 +56,21 @@ function NarrowItDownController(ShoppingListFactory) {
     }
 
     console.log(viewList.items);
-    viewList.title = origTitle + " (" + viewList.items.length + " items )";
+    viewList.updateTitle();
+  };
+
+  viewList.updateTitle = function () {
+    if (viewList.items == null || viewList.items.length == 0) {
+      viewList.title = "Nothing found";
+    } else {
+      viewList.title = "";
+    }
   };
 
   viewList.removeItem = function (itemIndex) {
     console.log("'this' is: ", this);
-    this.lastRemoved = "Last item removed was " + this.items[itemIndex].name;
     shoppingList.removeItem(itemIndex);
-    this.title = origTitle + " (" + viewList.items.length + " items )";
+    viewList.updateTitle();
   };
 }
 
@@ -105,14 +82,18 @@ function ShoppingListService() {
   var items = [];
 
   service.getMatchedMenuItems = function (searchTerm) {
+    items.splice(0, items.length);
+
+    if (searchTerm == null || searchTerm.trim().length == 0) {
+        return [];
+    }
+
     //TODO: Remove this w/ the response from the endpoint
     var menuResponse = {"menu_items":[{"id":877,"short_name":"A1","name":"Won Ton Soup with Chicken","description":"chicken broth with white meat chicken pieces","price_small":2.55,"price_large":5.0,"small_portion_name":"pint","large_portion_name":"quart"},{"id":878,"short_name":"A2","name":"Egg Drop Soup","description":"chicken broth with egg drop","price_small":2.25,"price_large":4.5,"small_portion_name":"pint","large_portion_name":"quart"},{"id":879,"short_name":"A3","name":"Chicken Corn Soup","description":"clear chicken broth with creamy corn and egg drop","price_small":2.75,"price_large":5.5,"small_portion_name":"pint","large_portion_name":"quart"},{"id":880,"short_name":"A4","name":"Hot and Sour Soup","description":"tofu, chicken, mushroom, bamboo shoot, and egg","price_small":2.55,"price_large":5.0,"small_portion_name":"pint","large_portion_name":"quart"}]};
 
     console.log("hi");
 
     var allItems = menuResponse["menu_items"];
-
-    items.splice(0, items.length);
 
     var foundItems = [];
 
