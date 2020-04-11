@@ -38,7 +38,7 @@ function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
       displayMessage('block');
     }
     else {
-      removeMessage('none');
+      displayMessage('none');
     }
 
   });
