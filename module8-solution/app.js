@@ -35,28 +35,22 @@ function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
     console.log("New value: ", newValue);
 
     if (newValue === true) {
-      displayWarning();
+      displayMessage('block');
     }
     else {
-      removeWarning();
+      removeMessage('none');
     }
 
   });
 
-  function displayMessage() {
+  function displayMessage(displayType) {
     // Using Angluar jqLite
-    var warningElem = element.find("div");
-    console.log(warningElem);
-    warningElem.css('display', 'block');
+    var messageElem = element.find("div");
+    console.log(messageElem);
+    console.log(displayType);
+    messageElem.css('display', displayType);
   }
 	
-  function removeMessage() {
-    // Using Angluar jqLite
-    var warningElem = element.find("div");
-    console.log(warningElem);
-    warningElem.css('display', 'none');
-  }
-
 }
 
 
