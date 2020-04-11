@@ -12,7 +12,6 @@ function ShoppingListDirective() {
     templateUrl: 'shoppingList.html',
     scope: {
       items: '<',
-      myTitle: '@title',
       onRemove: '&'
     },
     controller: NarrowItDownDirectiveController,
@@ -71,8 +70,6 @@ function NarrowItDownController(ShoppingListFactory) {
   var shoppingList = ShoppingListFactory();
 
   viewList.items = shoppingList.getItems();
-  var origTitle = "Shopping List #1";
-  viewList.title = origTitle + " (" + viewList.items.length + " items )";
 
   viewList.searchTerm = "";
 
@@ -88,14 +85,12 @@ function NarrowItDownController(ShoppingListFactory) {
     }
 
     console.log(viewList.items);
-    viewList.title = origTitle + " (" + viewList.items.length + " items )";
   };
 
   viewList.removeItem = function (itemIndex) {
+    console.log("Removing item at ", itemIndex);
     console.log("'this' is: ", this);
-    this.lastRemoved = "Last item removed was " + this.items[itemIndex].name;
     shoppingList.removeItem(itemIndex);
-    this.title = origTitle + " (" + viewList.items.length + " items )";
   };
 }
 
