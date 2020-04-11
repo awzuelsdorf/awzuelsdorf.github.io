@@ -17,50 +17,10 @@ function ShoppingListDirective() {
     controller: NarrowItDownDirectiveController,
     controllerAs: 'list',
     bindToController: true,
-    link: NarrowItDownDirectiveLink
   };
 
   return ddo;
 }
-
-
-function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
-  console.log("Link scope is: ", scope);
-  console.log("Controller instance is: ", controller);
-  console.log("Element is: ", element);
-
-  scope.$watch('list.isEmptySearchResult()', function (newValue, oldValue) {
-    console.log("Old value: ", oldValue);
-    console.log("New value: ", newValue);
-
-    if (newValue === true) {
-      displayMessage('block');
-    }
-    else {
-      displayMessage('none');
-    }
-
-  });
-
-  function displayMessage(displayType) {
-    // Using Angluar jqLite
-    var messageElem = element.find("div");
-    console.log(messageElem);
-    console.log(displayType);
-    messageElem.css('display', displayType);
-  }
-	
-}
-
-
-function NarrowItDownDirectiveController() {
-  var list = this;
-
-  list.isEmptySearchResult = function () {
-    var name = list.items == null || list.items.length == 0;
-  };
-}
-
 
 NarrowItDownController.$inject = ['ShoppingListFactory'];
 function NarrowItDownController(ShoppingListFactory) {
@@ -71,6 +31,7 @@ function NarrowItDownController(ShoppingListFactory) {
 
   viewList.items = shoppingList.getItems();
 
+  viewList.isEmptyMessage = "";
   viewList.searchTerm = "";
 
   viewList.searchItems = function () {
@@ -84,6 +45,7 @@ function NarrowItDownController(ShoppingListFactory) {
       viewList.items.push(newItems[i]);
     }
 
+    viewList.isEmptyMessage = viewList.items.length > 0;
     console.log(viewList.items);
   };
 
