@@ -30,7 +30,7 @@ function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
   console.log("Controller instance is: ", controller);
   console.log("Element is: ", element);
 
-  scope.$watch('list.cookiesInList()', function (newValue, oldValue) {
+  scope.$watch('list.isEmptySearchResult()', function (newValue, oldValue) {
     console.log("Old value: ", oldValue);
     console.log("New value: ", newValue);
 
@@ -45,24 +45,9 @@ function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
 
   function displayCookieWarning() {
     // Using Angluar jqLite
-    // var warningElem = element.find("div");
-    // console.log(warningElem);
-    // warningElem.css('display', 'block');
-
-    // If jQuery included before Angluar
-    var warningElem = element.find("div.error");
-    warningElem.slideDown(900);
-  }
-
-
-  function removeCookieWarning() {
-    // Using Angluar jqLite
-    // var warningElem = element.find("div");
-    // warningElem.css('display', 'none');
-
-    // If jQuery included before Angluar
-    var warningElem = element.find("div.error");
-    warningElem.slideUp(900);
+    /var warningElem = element.find("div");
+    console.log(warningElem);
+    warningElem.css('display', 'block');
   }
 }
 
@@ -70,15 +55,8 @@ function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
 function NarrowItDownDirectiveController() {
   var list = this;
 
-  list.cookiesInList = function () {
-    for (var i = 0; i < list.items.length; i++) {
-      var name = list.items[i].name;
-      if (name.toLowerCase().indexOf("cookie") !== -1) {
-        return true;
-      }
-    }
-
-    return false;
+  list.isEmptySearchResult = function () {
+    var name = list.items == null || list.items.length == 0;
   };
 }
 
