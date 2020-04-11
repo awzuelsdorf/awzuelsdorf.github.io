@@ -99,6 +99,8 @@ function NarrowItDownController(ShoppingListFactory) {
   viewList.searchItems = function () {
     var newItems = shoppingList.getMatchedMenuItems(viewList.searchTerm);
 
+    console.log("new items: ", newItems);
+
     viewList.items.splice(0, viewList.items.length);
 
     for (var i = 0; i < newItems.length; ++i) {
