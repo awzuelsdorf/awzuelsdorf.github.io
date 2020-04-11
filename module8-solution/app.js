@@ -95,10 +95,9 @@ function ShoppingListController(ShoppingListFactory) {
   viewList.title = origTitle + " (" + viewList.items.length + " items )";
 
   viewList.itemName = "";
-  viewList.itemQuantity = "";
 
   viewList.addItem = function () {
-    shoppingList.addItem(viewList.itemName, viewList.itemQuantity);
+    shoppingList.addItem(viewList.itemName);
     viewList.title = origTitle + " (" + viewList.items.length + " items )";
   };
 
@@ -118,17 +117,18 @@ function ShoppingListService(maxItems) {
   // List of shopping items
   var items = [];
 
-  service.addItem = function (itemName, quantity) {
-    if ((maxItems === undefined) ||
-        (maxItems !== undefined) && (items.length < maxItems)) {
-      var item = {
-        name: itemName,
-        quantity: quantity
-      };
-      items.push(item);
-    }
-    else {
-      throw new Error("Max items (" + maxItems + ") reached.");
+  service.getMatchedMenuItems = function (searchTerm) {
+    //TODO: Remove this w/ the response from the endpoint
+    var menuResponse = {"menu_items":[{"id":877,"short_name":"A1","name":"Won Ton Soup with Chicken","description":"chicken-stuffed won tons in clear chicken broth with white meat chicken pieces and a few scallions","price_small":2.55,"price_large":5.0,"small_portion_name":"pint","large_portion_name":"quart"},{"id":878,"short_name":"A2","name":"Egg Drop Soup","description":"chicken broth with egg drop","price_small":2.25,"price_large":4.5,"small_portion_name":"pint","large_portion_name":"quart"},{"id":879,"short_name":"A3","name":"Chicken Corn Soup","description":"clear chicken broth with creamy corn and egg drop with white meat chicken pieces","price_small":2.75,"price_large":5.5,"small_portion_name":"pint","large_portion_name":"quart"},{"id":880,"short_name":"A4","name":"Hot and Sour Soup","description":"tofu, chicken, mushroom, bamboo shoot, and egg","price_small":2.55,"price_large":5.0,"small_portion_name":"pint","large_portion_name":"quart"}]};
+
+    var allItems = menuResponse["menu_items"];
+
+    var items = [];
+
+    for (var i = 0; i < allItems.length; ++i) {
+      if (allItems[i]["description"].contains(searchTerm)) {
+        items.push({name: allItems[i]["description"]});
+      }
     }
   };
 
