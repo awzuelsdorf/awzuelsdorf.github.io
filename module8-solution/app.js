@@ -12,15 +12,54 @@ function ShoppingListDirective() {
     templateUrl: 'shoppingList.html',
     scope: {
       items: '<',
+      myTitle: '@title',
       onRemove: '&'
     },
     controller: NarrowItDownDirectiveController,
     controllerAs: 'list',
     bindToController: true,
+    link: NarrowItDownDirectiveLink
   };
 
   return ddo;
 }
+
+
+function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
+  console.log("Link scope is: ", scope);
+  console.log("Controller instance is: ", controller);
+  console.log("Element is: ", element);
+
+  scope.$watch('list.isEmptySearchResult()', function (newValue, oldValue) {
+    console.log("Old value: ", oldValue);
+    console.log("New value: ", newValue);
+
+    if (newValue === true) {
+      displayCookieWarning();
+    }
+    else {
+      removeCookieWarning();
+    }
+
+  });
+
+  function displayCookieWarning() {
+    // Using Angluar jqLite
+    var warningElem = element.find("div");
+    console.log(warningElem);
+    warningElem.css('display', 'block');
+  }
+}
+
+
+function NarrowItDownDirectiveController() {
+  var list = this;
+
+  list.isEmptySearchResult = function () {
+    var name = list.items == null || list.items.length == 0;
+  };
+}
+
 
 NarrowItDownController.$inject = ['ShoppingListFactory'];
 function NarrowItDownController(ShoppingListFactory) {
@@ -30,8 +69,9 @@ function NarrowItDownController(ShoppingListFactory) {
   var shoppingList = ShoppingListFactory();
 
   viewList.items = shoppingList.getItems();
+  var origTitle = "Shopping List #1";
+  viewList.title = origTitle + " (" + viewList.items.length + " items )";
 
-  viewList.isEmptyMessage = "";
   viewList.searchTerm = "";
 
   viewList.searchItems = function () {
@@ -45,14 +85,15 @@ function NarrowItDownController(ShoppingListFactory) {
       viewList.items.push(newItems[i]);
     }
 
-    viewList.isEmptyMessage = viewList.items.length > 0;
     console.log(viewList.items);
+    viewList.title = origTitle + " (" + viewList.items.length + " items )";
   };
 
   viewList.removeItem = function (itemIndex) {
-    console.log("Removing item at ", itemIndex);
     console.log("'this' is: ", this);
+    this.lastRemoved = "Last item removed was " + this.items[itemIndex].name;
     shoppingList.removeItem(itemIndex);
+    this.title = origTitle + " (" + viewList.items.length + " items )";
   };
 }
 
