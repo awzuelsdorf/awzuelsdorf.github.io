@@ -6,7 +6,6 @@ angular.module('NarrowItDownApp', [])
 .factory('MenuSearchFactory', MenuSearchFactory)
 .directive('shoppingList', NarrowItDown);
 
-
 function NarrowItDown() {
   var ddo = {
     templateUrl: 'shoppingList.html',
@@ -23,7 +22,6 @@ function NarrowItDown() {
 
   return ddo;
 }
-
 
 function NarrowItDownLink(scope, element, attrs, controller) {
   console.log("Link scope is: ", scope);
@@ -66,7 +64,6 @@ function NarrowItDownLink(scope, element, attrs, controller) {
   }
 }
 
-
 function NarrowItDownController() {
   var list = this;
 
@@ -81,7 +78,6 @@ function NarrowItDownController() {
     return false;
   };
 }
-
 
 NarrowItDownController.$inject = ['MenuSearchFactory'];
 function NarrowItDownController(MenuSearchFactory) {
@@ -109,7 +105,6 @@ function NarrowItDownController(MenuSearchFactory) {
     this.title = origTitle + " (" + viewList.items.length + " items )";
   };
 }
-
 
 // If not specified, maxItems assumed unlimited
 function MenuSearchService() {
@@ -146,7 +141,6 @@ function MenuSearchService() {
     return items;
   };
 }
-
 
 function MenuSearchFactory() {
   var factory = function (maxItems) {
