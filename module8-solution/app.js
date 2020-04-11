@@ -104,7 +104,7 @@ function NarrowItDownController(ShoppingListFactory) {
     viewList.items.splice(0, viewList.items.length);
 
     for (var i = 0; i < newItems.length; ++i) {
-      viewList.items.add(newItems[i]);
+      viewList.items.push(newItems[i]);
     }
 
     console.log(viewList.items);
