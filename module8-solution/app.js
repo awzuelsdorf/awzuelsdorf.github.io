@@ -35,20 +35,28 @@ function NarrowItDownDirectiveLink(scope, element, attrs, controller) {
     console.log("New value: ", newValue);
 
     if (newValue === true) {
-      displayCookieWarning();
+      displayWarning();
     }
     else {
-      removeCookieWarning();
+      removeWarning();
     }
 
   });
 
-  function displayCookieWarning() {
+  function displayMessage() {
     // Using Angluar jqLite
     var warningElem = element.find("div");
     console.log(warningElem);
     warningElem.css('display', 'block');
   }
+	
+  function removeMessage() {
+    // Using Angluar jqLite
+    var warningElem = element.find("div");
+    console.log(warningElem);
+    warningElem.css('display', 'none');
+  }
+
 }
 
 
