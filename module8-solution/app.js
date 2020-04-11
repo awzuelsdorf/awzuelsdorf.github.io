@@ -120,7 +120,6 @@ function NarrowItDownController(ShoppingListFactory) {
 }
 
 
-// If not specified, maxItems assumed unlimited
 function ShoppingListService() {
   var service = this;
 
@@ -163,8 +162,8 @@ function ShoppingListService() {
 
 
 function ShoppingListFactory() {
-  var factory = function (maxItems) {
-    return new ShoppingListService(maxItems);
+  var factory = function () {
+    return new ShoppingListService();
   };
 
   return factory;
