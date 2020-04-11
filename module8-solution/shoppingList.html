@@ -4,4 +4,4 @@
     <button ng-click="list.onRemove({index: $index});">Remove Item</button>
   </li>
 </ol>
-<p>{{ list.myTitle }}</p>
+<p ng-if="list.items">Nothing found</p>
