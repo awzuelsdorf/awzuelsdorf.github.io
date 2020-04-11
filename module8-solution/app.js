@@ -94,10 +94,11 @@ function ShoppingListController(ShoppingListFactory) {
   var origTitle = "Shopping List #1";
   viewList.title = origTitle + " (" + viewList.items.length + " items )";
 
-  viewList.itemName = "";
+  viewList.searchTerm = "";
 
-  viewList.addItem = function () {
-    shoppingList.addItem(viewList.itemName);
+  viewList.searchItems = function () {
+    shoppingList.getMatchedMenuItems(viewList.searchTerm);
+    console.log(viewList.items);
     viewList.title = origTitle + " (" + viewList.items.length + " items )";
   };
 
@@ -111,7 +112,7 @@ function ShoppingListController(ShoppingListFactory) {
 
 
 // If not specified, maxItems assumed unlimited
-function ShoppingListService(maxItems) {
+function ShoppingListService() {
   var service = this;
 
   // List of shopping items
@@ -119,17 +120,22 @@ function ShoppingListService(maxItems) {
 
   service.getMatchedMenuItems = function (searchTerm) {
     //TODO: Remove this w/ the response from the endpoint
-    var menuResponse = {"menu_items":[{"id":877,"short_name":"A1","name":"Won Ton Soup with Chicken","description":"chicken-stuffed won tons in clear chicken broth with white meat chicken pieces and a few scallions","price_small":2.55,"price_large":5.0,"small_portion_name":"pint","large_portion_name":"quart"},{"id":878,"short_name":"A2","name":"Egg Drop Soup","description":"chicken broth with egg drop","price_small":2.25,"price_large":4.5,"small_portion_name":"pint","large_portion_name":"quart"},{"id":879,"short_name":"A3","name":"Chicken Corn Soup","description":"clear chicken broth with creamy corn and egg drop with white meat chicken pieces","price_small":2.75,"price_large":5.5,"small_portion_name":"pint","large_portion_name":"quart"},{"id":880,"short_name":"A4","name":"Hot and Sour Soup","description":"tofu, chicken, mushroom, bamboo shoot, and egg","price_small":2.55,"price_large":5.0,"small_portion_name":"pint","large_portion_name":"quart"}]};
+    var menuResponse = {"menu_items":[{"id":877,"short_name":"A1","name":"Won Ton Soup with Chicken","description":"chicken broth with white meat chicken pieces","price_small":2.55,"price_large":5.0,"small_portion_name":"pint","large_portion_name":"quart"},{"id":878,"short_name":"A2","name":"Egg Drop Soup","description":"chicken broth with egg drop","price_small":2.25,"price_large":4.5,"small_portion_name":"pint","large_portion_name":"quart"},{"id":879,"short_name":"A3","name":"Chicken Corn Soup","description":"clear chicken broth with creamy corn and egg drop","price_small":2.75,"price_large":5.5,"small_portion_name":"pint","large_portion_name":"quart"},{"id":880,"short_name":"A4","name":"Hot and Sour Soup","description":"tofu, chicken, mushroom, bamboo shoot, and egg","price_small":2.55,"price_large":5.0,"small_portion_name":"pint","large_portion_name":"quart"}]};
 
     var allItems = menuResponse["menu_items"];
 
-    var items = [];
+    items.splice(0, items.length);
 
     for (var i = 0; i < allItems.length; ++i) {
-      if (allItems[i]["description"].contains(searchTerm)) {
+      if (allItems[i]["description"].indexOf(searchTerm) !== -1) {
+        console.log(allItems[i]["description"].indexOf(searchTerm));
+        console.log(allItems[i]["description"]);
+        console.log(searchTerm);
         items.push({name: allItems[i]["description"]});
       }
     }
+
+    console.log(items);
   };
 
   service.removeItem = function (itemIndex) {
