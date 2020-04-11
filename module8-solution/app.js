@@ -137,17 +137,19 @@ function ShoppingListService() {
 
     items.splice(0, items.length);
 
+    var foundItems = [];
+
     for (var i = 0; i < allItems.length; ++i) {
       if (allItems[i]["description"].indexOf(searchTerm) !== -1) {
         console.log(allItems[i]["description"].indexOf(searchTerm));
         console.log(allItems[i]["description"]);
         console.log(searchTerm);
         items.push({name: allItems[i]["description"]});
+        foundItems.push({name: allItems[i]["description"]});
       }
     }
 
-    console.log(items);
-    return items;
+    return foundItems;
   };
 
   service.removeItem = function (itemIndex) {
