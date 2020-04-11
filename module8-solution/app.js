@@ -1,10 +1,11 @@
 (function () {
 'use strict';
 
-angular.module('NarrowItDownApp', [])
-.controller('NarrowItDownController', NarrowItDownController)
-.factory('MenuSearchFactory', MenuSearchFactory)
+angular.module('ShoppingListDirectiveApp', [])
+.controller('ShoppingListController', ShoppingListController)
+.factory('ShoppingListFactory', ShoppingListFactory)
 .directive('shoppingList', ShoppingListDirective);
+
 
 function ShoppingListDirective() {
   var ddo = {
@@ -14,16 +15,17 @@ function ShoppingListDirective() {
       myTitle: '@title',
       onRemove: '&'
     },
-    controller: NarrowItDownController,
+    controller: ShoppingListDirectiveController,
     controllerAs: 'list',
     bindToController: true,
-    link: NarrowItDownLink
+    link: ShoppingListDirectiveLink
   };
 
   return ddo;
 }
 
-function NarrowItDownLink(scope, element, attrs, controller) {
+
+function ShoppingListDirectiveLink(scope, element, attrs, controller) {
   console.log("Link scope is: ", scope);
   console.log("Controller instance is: ", controller);
   console.log("Element is: ", element);
@@ -64,7 +66,8 @@ function NarrowItDownLink(scope, element, attrs, controller) {
   }
 }
 
-function NarrowItDownController() {
+
+function ShoppingListDirectiveController() {
   var list = this;
 
   list.cookiesInList = function () {
@@ -79,12 +82,13 @@ function NarrowItDownController() {
   };
 }
 
-NarrowItDownController.$inject = ['MenuSearchFactory'];
-function NarrowItDownController(MenuSearchFactory) {
+
+ShoppingListController.$inject = ['ShoppingListFactory'];
+function ShoppingListController(ShoppingListFactory) {
   var viewList = this;
 
   // Use factory to create new shopping list service
-  var shoppingList = MenuSearchFactory();
+  var shoppingList = ShoppingListFactory();
 
   viewList.items = shoppingList.getItems();
   var origTitle = "Shopping List #1";
@@ -106,8 +110,9 @@ function NarrowItDownController(MenuSearchFactory) {
   };
 }
 
+
 // If not specified, maxItems assumed unlimited
-function MenuSearchService() {
+function ShoppingListService() {
   var service = this;
 
   // List of shopping items
@@ -142,9 +147,10 @@ function MenuSearchService() {
   };
 }
 
-function MenuSearchFactory() {
+
+function ShoppingListFactory() {
   var factory = function (maxItems) {
-    return new MenuSearchService(maxItems);
+    return new ShoppingListService(maxItems);
   };
 
   return factory;
