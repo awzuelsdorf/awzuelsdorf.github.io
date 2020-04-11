@@ -1,13 +1,13 @@
 (function () {
 'use strict';
 
-angular.module('ShoppingListDirectiveApp', [])
-.controller('ShoppingListController', ShoppingListController)
-.factory('ShoppingListFactory', ShoppingListFactory)
-.directive('shoppingList', ShoppingListDirective);
+angular.module('NarrowItDownApp', [])
+.controller('NarrowItDownController', NarrowItDownController)
+.factory('MenuSearchFactory', MenuSearchFactory)
+.directive('shoppingList', NarrowItDown);
 
 
-function ShoppingListDirective() {
+function NarrowItDown() {
   var ddo = {
     templateUrl: 'shoppingList.html',
     scope: {
@@ -15,17 +15,17 @@ function ShoppingListDirective() {
       myTitle: '@title',
       onRemove: '&'
     },
-    controller: ShoppingListDirectiveController,
+    controller: NarrowItDownController,
     controllerAs: 'list',
     bindToController: true,
-    link: ShoppingListDirectiveLink
+    link: NarrowItDownLink
   };
 
   return ddo;
 }
 
 
-function ShoppingListDirectiveLink(scope, element, attrs, controller) {
+function NarrowItDownLink(scope, element, attrs, controller) {
   console.log("Link scope is: ", scope);
   console.log("Controller instance is: ", controller);
   console.log("Element is: ", element);
@@ -67,7 +67,7 @@ function ShoppingListDirectiveLink(scope, element, attrs, controller) {
 }
 
 
-function ShoppingListDirectiveController() {
+function NarrowItDownController() {
   var list = this;
 
   list.cookiesInList = function () {
@@ -83,12 +83,12 @@ function ShoppingListDirectiveController() {
 }
 
 
-ShoppingListController.$inject = ['ShoppingListFactory'];
-function ShoppingListController(ShoppingListFactory) {
+NarrowItDownController.$inject = ['MenuSearchFactory'];
+function NarrowItDownController(MenuSearchFactory) {
   var viewList = this;
 
   // Use factory to create new shopping list service
-  var shoppingList = ShoppingListFactory();
+  var shoppingList = MenuSearchFactory();
 
   viewList.items = shoppingList.getItems();
   var origTitle = "Shopping List #1";
@@ -112,7 +112,7 @@ function ShoppingListController(ShoppingListFactory) {
 
 
 // If not specified, maxItems assumed unlimited
-function ShoppingListService() {
+function MenuSearchService() {
   var service = this;
 
   // List of shopping items
@@ -148,9 +148,9 @@ function ShoppingListService() {
 }
 
 
-function ShoppingListFactory() {
+function MenuSearchFactory() {
   var factory = function (maxItems) {
-    return new ShoppingListService(maxItems);
+    return new MenuSearchService(maxItems);
   };
 
   return factory;
