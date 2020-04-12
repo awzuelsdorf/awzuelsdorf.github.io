@@ -4,10 +4,10 @@
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
 .factory('ShoppingListFactory', ShoppingListFactory)
-.directive('shoppingList', ShoppingListDirective);
+.directive('foundItems', FoundItemsDirective);
 
 
-function ShoppingListDirective() {
+function FoundItemsDirective() {
   var ddo = {
     templateUrl: 'shoppingList.html',
     scope: {
