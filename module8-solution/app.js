@@ -9,7 +9,7 @@ angular.module('NarrowItDownApp', [])
 
 function FoundItemsDirective() {
   var ddo = {
-    templateUrl: 'shoppingList.html',
+    templateUrl: 'foundItems.html',
     scope: {
       items: '<',
       onRemove: '&'
@@ -34,14 +34,14 @@ NarrowItDownController.$inject = ['FoundItemsFactory'];
 function NarrowItDownController(FoundItemsFactory) {
   var viewList = this;
 
-  var shoppingList = FoundItemsFactory();
+  var foundItemsService = FoundItemsFactory();
 
-  viewList.items = shoppingList.getItems();
+  viewList.items = foundItemsService.getItems();
 
   viewList.searchTerm = "";
 
   viewList.searchItems = function () {
-    var newItems = shoppingList.getMatchedMenuItems(viewList.searchTerm);
+    var newItems = foundItemsService.getMatchedMenuItems(viewList.searchTerm);
 
     viewList.items.splice(0, viewList.items.length);
 
@@ -51,11 +51,11 @@ function NarrowItDownController(FoundItemsFactory) {
   };
 
   viewList.removeItem = function (itemIndex) {
-    shoppingList.removeItem(itemIndex);
+    foundItemsService.removeItem(itemIndex);
   };
 }
 
-function ShoppingListService($http) {
+function FoundItemsService($http) {
   var service = this;
 
   var items = [];
@@ -96,7 +96,7 @@ function ShoppingListService($http) {
 FoundItemsFactory.$inject = ["$http"];
 function FoundItemsFactory($http) {
   var factory = function () {
-    return new ShoppingListService($http);
+    return new FoundItemsService($http);
   };
 
   return factory;
