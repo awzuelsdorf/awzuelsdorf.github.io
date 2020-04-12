@@ -55,7 +55,6 @@ function NarrowItDownController(ShoppingListFactory) {
 
     console.log("hi");
     console.log(viewList.items);
-    viewList.updateTitle();
   };
 
   viewList.updateTitle = function () {
@@ -69,7 +68,6 @@ function NarrowItDownController(ShoppingListFactory) {
   viewList.removeItem = function (itemIndex) {
     console.log("'this' is: ", this);
     shoppingList.removeItem(itemIndex);
-    viewList.updateTitle();
   };
 }
 
@@ -78,6 +76,8 @@ function ShoppingListService($http) {
 
   // List of shopping items
   var items = [];
+
+  var myTitle = "";
 
   var warning
 
@@ -99,10 +99,13 @@ function ShoppingListService($http) {
           console.log(allItems[i]["description"].indexOf(searchTerm));
           console.log(allItems[i]["description"]);
           console.log(searchTerm);
-          items.push({name: allItems[i]["description"]});
+          items.push({name: "hi there"});
+          //items.push({name: allItems[i]["description"]});
           foundItems.push({name: allItems[i]["description"]});
         }
       }
+
+      myTitle = "hi";
 
       return foundItems;
     });
