@@ -12,7 +12,6 @@ function ShoppingListDirective() {
     templateUrl: 'shoppingList.html',
     scope: {
       items: '<',
-      myTitle: '@title',
       onRemove: '&'
     },
     controller: NarrowItDownDirectiveController,
@@ -38,35 +37,20 @@ function NarrowItDownController(ShoppingListFactory) {
   var shoppingList = ShoppingListFactory();
 
   viewList.items = shoppingList.getItems();
-  viewList.title = "";
 
   viewList.searchTerm = "";
 
   viewList.searchItems = function () {
     var newItems = shoppingList.getMatchedMenuItems(viewList.searchTerm);
 
-    console.log("new items: ", newItems);
-
     viewList.items.splice(0, viewList.items.length);
 
     for (var i = 0; i < newItems.length; ++i) {
       viewList.items.push(newItems[i]);
     }
-
-    console.log("hi");
-    console.log(viewList.items);
-  };
-
-  viewList.updateTitle = function () {
-    if (viewList.items == null || viewList.items.length == 0) {
-      viewList.title = "Nothing found";
-    } else {
-      viewList.title = "";
-    }
   };
 
   viewList.removeItem = function (itemIndex) {
-    console.log("'this' is: ", this);
     shoppingList.removeItem(itemIndex);
   };
 }
@@ -74,12 +58,7 @@ function NarrowItDownController(ShoppingListFactory) {
 function ShoppingListService($http) {
   var service = this;
 
-  // List of shopping items
   var items = [];
-
-  var myTitle = "";
-
-  var warning
 
   service.getMatchedMenuItems = function (searchTerm) {
     return $http({method: "GET", url: "https://davids-restaurant.herokuapp.com/menu_items.json"}).then(function (result) {
@@ -96,21 +75,13 @@ function ShoppingListService($http) {
 
       for (var i = 0; i < allItems.length; ++i) {
         if (allItems[i]["description"].indexOf(searchTerm) !== -1) {
-          console.log(allItems[i]["description"].indexOf(searchTerm));
-          console.log(allItems[i]["description"]);
-          console.log(searchTerm);
-          items.push({name: "hi there"});
-          //items.push({name: allItems[i]["description"]});
-          foundItems.push({name: allItems[i]["description"]});
+          items.push({description: allItems[i]["description"], name: allItems[i]["name"], shortName: allItems[i]["short_name"]});
+          foundItems.push({description: allItems[i]["description"], name: allItems[i]["name"], shortName: allItems[i]["short_name"]});
         }
       }
 
-      myTitle = "hi";
-
       return foundItems;
     });
-
-    //var menuResponse = {"menu_items":[{"id":877,"short_name":"A1","name":"Won Ton Soup with Chicken","description":"chicken broth with white meat chicken pieces","price_small":2.55,"price_large":5.0,"small_portion_name":"pint","large_portion_name":"quart"},{"id":878,"short_name":"A2","name":"Egg Drop Soup","description":"chicken broth with egg drop","price_small":2.25,"price_large":4.5,"small_portion_name":"pint","large_portion_name":"quart"},{"id":879,"short_name":"A3","name":"Chicken Corn Soup","description":"clear chicken broth with creamy corn and egg drop","price_small":2.75,"price_large":5.5,"small_portion_name":"pint","large_portion_name":"quart"},{"id":880,"short_name":"A4","name":"Hot and Sour Soup","description":"tofu, chicken, mushroom, bamboo shoot, and egg","price_small":2.55,"price_large":5.0,"small_portion_name":"pint","large_portion_name":"quart"}]};
   };
 
   service.removeItem = function (itemIndex) {
