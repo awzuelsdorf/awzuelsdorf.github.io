@@ -3,7 +3,7 @@
 
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
-.factory('ShoppingListFactory', ShoppingListFactory)
+.factory('FoundItemsFactory', FoundItemsFactory)
 .directive('foundItems', FoundItemsDirective);
 
 
@@ -30,11 +30,11 @@ function NarrowItDownDirectiveController() {
   };
 }
 
-NarrowItDownController.$inject = ['ShoppingListFactory'];
-function NarrowItDownController(ShoppingListFactory) {
+NarrowItDownController.$inject = ['FoundItemsFactory'];
+function NarrowItDownController(FoundItemsFactory) {
   var viewList = this;
 
-  var shoppingList = ShoppingListFactory();
+  var shoppingList = FoundItemsFactory();
 
   viewList.items = shoppingList.getItems();
 
@@ -93,8 +93,8 @@ function ShoppingListService($http) {
   };
 }
 
-ShoppingListFactory.$inject = ["$http"];
-function ShoppingListFactory($http) {
+FoundItemsFactory.$inject = ["$http"];
+function FoundItemsFactory($http) {
   var factory = function () {
     return new ShoppingListService($http);
   };
