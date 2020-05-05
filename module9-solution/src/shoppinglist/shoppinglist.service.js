@@ -5,39 +5,25 @@ angular.module('MenuApp')
 .service('ShoppingListService', ShoppingListService);
 
 
-ShoppingListService.$inject = ['$q', '$timeout']
-function ShoppingListService($q, $timeout) {
+ShoppingListService.$inject = ['$q', '$timeout', '$http']
+function ShoppingListService($q, $timeout, $http) {
   var service = this;
 
-  // List of shopping items
-  var items = [];
-
-  // Pre-populate a no cookie list
-  items.push({
-    categoryName: "Sugar",
-    categoryShortName: "2 bags",
-  });
-  items.push({
-    categoryName: "flour",
-    categoryShortName: "1 bags"
-  });
-  items.push({
-    categoryName: "Chocolate Chips",
-    categoryShortName: "3 bags"
-  });
-
-  // Simulates call to server
-  // Returns a promise, NOT items array directly
   service.getItems = function () {
-    var deferred = $q.defer();
+    return $http({method: "GET", url: "https://davids-restaurant.herokuapp.com/categories.json"}).then(function (result) {
 
-    // Wait 2 seconds before returning
-    $timeout(function () {
-      // deferred.reject(items);
-      deferred.resolve(items);
-    }, 800);
+      if (!result.data) {
+        return [];
+      }
 
-    return deferred.promise;
+      var foundItems = [];
+
+      for (var i = 0; i < result.data.length; ++i) {
+        foundItems.push({categoryName: result.data[i]["name"], categoryShortName: result.data[i]["short_name"]});
+      }
+
+      return foundItems;
+    });
   };
 }
 
