@@ -1,2 +1,3 @@
-<div>Category name: {{ itemDetail.categoryName }}</div>
-<div>Category short name: {{ itemDetail.categoryShortName }}</div>
+<li ng-repeat="item in itemDetail.items">
+  Name: {{ item.name }}, Description: {{ item.description }}
+</li>

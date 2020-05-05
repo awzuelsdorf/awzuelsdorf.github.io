@@ -10,8 +10,9 @@ function ItemDetailController($stateParams, items) {
   var itemDetail = this;
   var item = items[$stateParams.itemId];
 
-  itemDetail.categoryName = item.categoryName;
-  itemDetail.categoryShortName = item.categoryShortName;
+  item.items.then(function (result) {
+    itemDetail.items = result;
+  });
 }
 
 })();
