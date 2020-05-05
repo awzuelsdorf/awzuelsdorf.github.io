@@ -2,11 +2,11 @@
 'use strict';
 
 angular.module('MenuApp')
-.service('ShoppingListService', ShoppingListService);
+.service('MenuDataService', MenuDataService);
 
 
-ShoppingListService.$inject = ['$q', '$timeout', '$http']
-function ShoppingListService($q, $timeout, $http) {
+MenuDataService.$inject = ['$q', '$timeout', '$http']
+function MenuDataService($q, $timeout, $http) {
   var service = this;
 
   service.getItemsForCategory = function (category) {
@@ -28,7 +28,7 @@ function ShoppingListService($q, $timeout, $http) {
     });
   };
 
-  service.getItems = function () {
+  service.getAllCategories = function () {
     return $http({method: "GET", url: "https://davids-restaurant.herokuapp.com/categories.json"}).then(function (result) {
 
       if (!result.data) {

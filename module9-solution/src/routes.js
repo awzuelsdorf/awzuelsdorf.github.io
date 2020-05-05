@@ -25,8 +25,8 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     templateUrl: 'src/menu/templates/main-shoppinglist.template.html',
     controller: 'MainShoppingListController as mainList',
     resolve: {
-      items: ['ShoppingListService', function (ShoppingListService) {
-        return ShoppingListService.getItems();
+      items: ['MenuDataService', function (MenuDataService) {
+        return MenuDataService.getAllCategories();
       }]
     }
   })
