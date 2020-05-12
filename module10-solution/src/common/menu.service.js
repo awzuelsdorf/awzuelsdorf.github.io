@@ -48,7 +48,6 @@ function MenuService($http, ApiPath) {
     }
 
     return $http.get(ApiPath + '/menu_items/' + service.user.favorite + '.json').then(function (response) {
-      console.log(response.data);
       return response.data;
     });
   };

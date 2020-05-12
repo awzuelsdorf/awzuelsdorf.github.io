@@ -8,7 +8,6 @@ function ProfileController(userInfo, favoriteMenuItemInfo) {
   var profile = this;
 
   profile.userInfo = userInfo;
-  console.log(favoriteMenuItemInfo);
   profile.favoriteMenuItemInfo = favoriteMenuItemInfo;
 }
 
