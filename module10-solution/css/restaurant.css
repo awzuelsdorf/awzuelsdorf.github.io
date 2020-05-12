@@ -8,6 +8,9 @@ body {
 input {
   color: #000000;
 }
+button {
+  color: #000000;
+}
 
 .initial-loading {
   margin-top: 60px;
