@@ -1,8 +1,12 @@
 body {
   font-size: 16px;
-  color: #fff;
+  color: #FFFFFF;
   background-color: #61122f;
   font-family: 'Oxygen', sans-serif;
+}
+
+input {
+  color: #000000;
 }
 
 .initial-loading {
