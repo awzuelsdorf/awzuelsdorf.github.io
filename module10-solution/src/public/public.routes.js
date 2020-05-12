@@ -49,6 +49,9 @@ function routeConfig ($stateProvider) {
       resolve: {
         menuItems: ['MenuService', function (MenuService) {
           return MenuService.getAllMenuItemShortNames();
+        }],
+        userInfo: ['MenuService', function (MenuService) {
+          return MenuService.getUserInfo();
         }]
       }
     });;

@@ -7,7 +7,7 @@
           required
           minlength="1"
           ng-maxlength="400">
-          {{ registrationCtrl.user.firstname }}
+	<!--{{ registrationCtrl.user.firstname }}-->
           <span
             ng-if="(regForm.firstname.$error.minlength || regForm.firstname.$error.required) && regForm.firstname.$touched">
             First name must be at least 1 character long
@@ -22,7 +22,7 @@
           required
           minlength="1"
           ng-maxlength="400">
-          {{ registrationCtrl.user.lastname }}
+	<!--{{ registrationCtrl.user.lastname }}-->
           <span
             ng-if="(regForm.lastname.$error.minlength || regForm.lastname.$error.required) && regForm.lastname.$touched">
             Last name must be at least 1 character long
@@ -52,26 +52,27 @@
         <input type="text" name="favorite" placeholder="Favorite menu item"
           ng-model="registrationCtrl.user.favorite"
           required>
-          <span ng-if="regForm.email.$touched && registrationCtrl.menuItems.indexOf(registrationCtrl.user.favorite) == -1">
-		  Invalid item.
+          <span ng-if="registrationCtrl.menuItems.indexOf(registrationCtrl.user.favorite) == -1">
+		  No such menu number exists.
           </span>
           <br>
 
 
         <button
-          ng-disabled="regForm.$invalid"
-          ng-click="registrationCtrl.submit()">Submit</button>
+          ng-disabled="regForm.$invalid || registrationCtrl.menuItems.indexOf(registrationCtrl.user.favorite) == -1"
+          ng-click="registrationCtrl.submit(registrationCtrl.user)">Submit</button>
 
-          <div style="margin-top: 10px;">
-            Form valid? {{ regForm.$valid }}
+          <div style="margin-top: 10px;" ng-if="!regForm.$valid">
+            Please correct errors before submitting.
           </div>
       </form>
     </fieldset>
 
     <div id="info" ng-if="registrationCtrl.completed">
-      First name: {{ registrationCtrl.user.firstname}} <br>
-      Last name: {{ registrationCtrl.user.lastname}} <br>
-      Email: {{ registrationCtrl.user.email}} <br>
+      Your information has been saved.
+      <!--First name: {{ registrationCtrl.user.firstname }} {{ registrationCtrl.userInfo.firstname }} <br>
+      Last name: {{ registrationCtrl.user.lastname }} <br>
+      Email: {{ registrationCtrl.user.email }} <br>
       Phone: {{ registrationCtrl.user.phone }} <br>
-      Favorite: {{ registrationCtrl.user.favorite}}
+      Favorite: {{ registrationCtrl.user.favorite }}-->
     </div>

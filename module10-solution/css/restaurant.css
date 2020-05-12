@@ -11,6 +11,9 @@ input {
 button {
   color: #000000;
 }
+legend {
+  color: #FFFFFF;
+}
 
 .initial-loading {
   margin-top: 60px;
