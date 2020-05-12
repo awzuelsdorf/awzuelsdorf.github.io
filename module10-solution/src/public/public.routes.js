@@ -47,8 +47,8 @@ function routeConfig ($stateProvider) {
       controller: 'RegistrationController',
       controllerAs: 'registrationCtrl',
       resolve: {
-        menuCategories: ['MenuService', function (MenuService) {
-          return MenuService.getCategories();
+        menuItems: ['MenuService', function (MenuService) {
+          return MenuService.getAllMenuItemShortNames();
         }]
       }
     });;

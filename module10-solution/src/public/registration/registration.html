@@ -49,6 +49,15 @@
           </span>
           <br>
 
+        <input type="text" name="favorite" placeholder="Favorite menu item"
+          ng-model="registrationCtrl.user.favorite"
+          required>
+          <span ng-if="regForm.email.$touched && registrationCtrl.menuItems.indexOf(registrationCtrl.user.favorite) == -1">
+		  Invalid item.
+          </span>
+          <br>
+
+
         <button
           ng-disabled="regForm.$invalid"
           ng-click="registrationCtrl.submit()">Submit</button>
@@ -60,7 +69,9 @@
     </fieldset>
 
     <div id="info" ng-if="registrationCtrl.completed">
-      Username: {{ registrationCtrl.user.username}} <br>
+      First name: {{ registrationCtrl.user.firstname}} <br>
+      Last name: {{ registrationCtrl.user.lastname}} <br>
       Email: {{ registrationCtrl.user.email}} <br>
-      Phone: {{ registrationCtrl.user.phone }}
+      Phone: {{ registrationCtrl.user.phone }} <br>
+      Favorite: {{ registrationCtrl.user.favorite}}
     </div>
