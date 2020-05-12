@@ -63,7 +63,10 @@ function routeConfig ($stateProvider) {
       resolve: {
         userInfo: ['MenuService', function (MenuService) {
           return MenuService.getUserInfo();
-        }]
+        }],
+        favoriteMenuItemInfo: ['MenuService', function (MenuService) {
+          return MenuService.getFavoriteMenuItemInfo();
+	}]
       }
     });
 }

@@ -42,6 +42,17 @@ function MenuService($http, ApiPath) {
     });
   };
 
+  service.getFavoriteMenuItemInfo = function () {
+    if (!service.user.favorite) {
+      return {};
+    }
+
+    return $http.get(ApiPath + '/menu_items/' + service.user.favorite + '.json').then(function (response) {
+      console.log(response.data);
+      return response.data;
+    });
+  };
+
   service.getUserInfo = function () {
     return service.user;
   }
