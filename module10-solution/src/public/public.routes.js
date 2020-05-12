@@ -54,6 +54,17 @@ function routeConfig ($stateProvider) {
           return MenuService.getUserInfo();
         }]
       }
-    });;
+    })
+    .state('public.profile', {
+      url: '/profile',
+      templateUrl: 'src/public/profile/profile.html',
+      controller: 'ProfileController',
+      controllerAs: 'profileCtrl',
+      resolve: {
+        userInfo: ['MenuService', function (MenuService) {
+          return MenuService.getUserInfo();
+        }]
+      }
+    });
 }
 })();
