@@ -49,7 +49,7 @@
 			     <li>Minimize saving and reloading. Currently, when a photo is taken, it is saved to disk preemptively and then loaded into memory. Assuming we do not care about photos that have no faces in them, PiCamera (the Python library used to interact with Arducam) can allow the images to be processed in-memory. This will further reduce disk access, which is not the largest bottleneck but is still significant and may be the easiest one to overcome at this point</li>
 			 </ul>
 			 <p>While it is possible that Python may never match an equivalent applicaton written in C++ in the area of facial recognition, it is important to note that none of the optimizations used here were language-specific. They can be used in any language, and none of them required any groundbreaking research or truly novel inventions. It is true that not every problem will have these optimizations available (if your application is network-bound, then minimizing disk access most likely will not buy you much). But it shows that using a higher level language is not a death sentence for performance, and that rewriting an application to use lower-level languages is not the only or easiest tool in one's toolbelt.</p>
-			 <p>Copyright 2020 Andrew Zuelsdorf. All rights reserved.</p>
+			 <p>Copyright 2021 Andrew Zuelsdorf. All rights reserved.</p>
                      </article>
                 
                  </div>
