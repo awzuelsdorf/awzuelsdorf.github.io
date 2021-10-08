@@ -9,8 +9,8 @@
 	<body>
 <div class="container">
      <div class="col-md-10 blogShort">
-                     <h1>GeoIP Blocking Using Windows Firewall</h1>
-                     <p>Andy Zuelsdorf, 6 October 2021</p>
+                     <h1>GeoIP Blocking Using Windows Firewall and Regional Internet Registries</h1>
+                     <p>Andy Zuelsdorf, 8 October 2021</p>
 		     <article>
 			<p>This article will describe using data provided by the Regional Internet Registries (RIRs) APNIC and RIPE NCC to block IP addresses located in Russia, China, Iran, and North Korea. The method described here can be used to block any country whose IP address space is managed by APNIC or RIPE NCC, not just Russia, China, Iran, or North Korea.</p>
 			<h2>Motivation: Why Block a Whole Country?</h2>
@@ -22,7 +22,7 @@
 			<h2>Consolidating IP CIDRs</h2>
 			<p>Once the files from before have been decompressed and converted to a CSV file using <a href="https://github.com/awzuelsdorf/geoip_windows_firewall/blob/main/inetnum_file_parser.py">inetnum_file_parser.py</a>, one could add each IP range that belongs to the country codes CN (China), IR (Iran), RU (Russia), and KP (North Korea) to an outbound rule and an inbound rule in Windows Firewall. However, there are hundreds of thousands of IP ranges for these countries individually, and firewall rules are not free. Therefore, it makes sense to combine overlapping IP address ranges where possible to limit the number of rules needed. To do this, one can use <a href="https://github.com/awzuelsdorf/geoip_windows_firewall/blob/main/consolidate_ips.py">consolidate_ips.py</a>, which will produce a minimal set of IP CIDRs given a list of country codes. Running this code using a relatively download of the inetnum files from before and the country codes CN, KP, IR, and RU should yield a file that reduces the IP ranges from 678818 to 22804, a reduction of about 96 percent.</p>
 			<h2>Applying firewall rules</h2>
-			<p>Once IP ranges have been consolidated, one can use the <a href="https://github.com/awzuelsdorf/geoip_windows_firewall/blob/main/Import-FirewallBlocklist.ps1">Import-FirewallBlocklist.ps1</a> Powershell script, courtesy of Jason Fossen, to create and update inbound and oubound firewall rules using the consolidated IP CIDR file (Example: `.\Import-FirewallBlocklist.ps1 -inputfile .\consolidated_china_iran_russia_north_korea.txt`). It may be necessary to use a Powershell terminal with administrator privileges and update the execution policy at least temporarily to Bypass using `Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser` in order to apply the rules.</p>
+			<p>Once IP ranges have been consolidated, one can use the <a href="https://github.com/awzuelsdorf/geoip_windows_firewall/blob/main/Import-FirewallBlocklist.ps1">Import-FirewallBlocklist.ps1</a> Powershell script, courtesy of <a href="http://www.sans.org/sec505">Jason Fossen of Enclave Consulting LLC</a>, to create and update inbound and oubound firewall rules using the consolidated IP CIDR file (Example: `.\Import-FirewallBlocklist.ps1 -inputfile .\consolidated_china_iran_russia_north_korea.txt`). It may be necessary to use a Powershell terminal with administrator privileges and update the execution policy at least temporarily to Bypass using `Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser` in order to apply the rules.</p>
 			<p>Once this is done, attempting to visit a website or other resource in China (such as weibo.com), Russia, Iran, or North Korea should fail, reducing your attack surface significantly.</p>
 			<h2>Recommendations, Caveats, and Future Work</h2>
 			<p>While limiting outbound and inbound connections from certain countries makes sense for many individuals, it may not make sense for some businesses or some divisions of some businesses. So before applying these rules to others' computing resources, be sure to get written permission.</p>
