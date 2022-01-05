@@ -1,0 +1,30 @@
+<!DOCTYPE html5>
+<html lang="en">
+	<head>
+		<title>Domovoi: PiHole Alerting for Previously Unseen Domains</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="nofollow" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/style.css" type="text/css">
+	</head>
+	<body>
+<div class="container">
+     <div class="col-md-10 blogShort">
+                     <h1>Domovoi: PiHole Alerting for Previously Unseen Domains</h1>
+                     <p>Andy Zuelsdorf, 4 January 2022</p>
+		     <article>
+			<p>This article describes how to set up Domovoi, a Python and Bash repository that I created to send me text alerts whenever the PiHole that I had previously installed on a Raspberry Pi Zero W detected that someone on my network had accessed a domain that nobody had accessed on my network before. It also tells me whether the domain was blocked or permitted. The repository is named after Domovoi, the butler of the titular character and protagonist of the Artemis Fowl novels by Eoin Colfer.</p>
+			<h2>Motivation: Why Domovoi? Faster Troubleshooting and Enhanced Control</h2>
+			<p>PiHole is great at what it does, especially when you want to have more than just smartphones and personal computers accessing the Internet from your network. The ad blockers that are installed on personal computers' web browsers, often by default, aren't available at all on some mobile devices' browsers, and these ad blockers are almost always unavailable on smart TVs and Internet of Things (IoT) devices, even though these devices often transmit data for non-critical functions (advertising) to different domains than those they used for their critical functions. PiHole can prevent these devices from accessing these non-critical domains by denying the DNS queries for those domains, making it impossible for the device to send its data unless it looks up the IP address for the domain name itself. This is great when it works, which it does almost all of the time for me, but PiHole operates on a blacklist/whitelist system for domain names or patterns of domain names, and these blacklists can sometimes block DNS queries. When this happens, the results can be obvious or they can be nonobvious, but in the few cases it has happened to me, it was obvious enough that I could not see movie tickets I had purchased and I could not access an application I needed for work. In both these cases the solution was I had to log into the PiHole admin interface and query for iteratively narrower slices of time (first a day, then an hour, then a few minutes) to determine which blocked query had been caused my movie ticket lookup and my application to have issues. This wasn't a major inconvenience for me since I'm the only person on my network usually, but for a single family home or a more IoT-device-heavy environment, it would be more difficult to figure out what went wrong with many devices making DNS queries simultaneously. More importantly, looking through the PiHole admin interface, I saw many domains repeatedly blocked or permitted, but I recognized almost none of them. Most of them were domain names for content delivery networks that many webpages I visited apparently used, but their slightly different names (they often contained a string of random numbers for the subdomain, e.g., d3728te9.cdn.net and e832743.cdn.net) clogged up the logs and made it hard to see what non-CDN domains I had been accessing. I didn't like the information overload that made it hard to know what domains were being accessed on my network, and I didn't like the inconvenience of searching through logs to find which domain name query out of the dozens that had been blocked was the one that caused my application and my movie ticket lookup to fail. I decided that I would write a program to automate what I had done previously, but would do so periodically to reduce the information overload. The program would query my PiHole admin console periodically and frequently (every five minutes) to determine what previously unseen domains (if any) had been blocked or permitted, and any new blocked or permitted domains would be texted to my mobile phone via Twilio. This way, I would get notified more quickly with less effort.</p>
+			<h2>Writing the Client</h2>
+			<p>...</p>
+			<h2>Caveats and Future work</h2>
+			<p>...</p>
+			<p>Copyright 2022 Andrew Zuelsdorf. All rights reserved.</p>
+                     </article>
+                 </div>
+	</div>
+</div>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	</body>
+</html>
