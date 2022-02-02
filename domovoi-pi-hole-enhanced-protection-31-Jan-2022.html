@@ -1,0 +1,36 @@
+<!DOCTYPE html5>
+<html lang="en">
+	<head>
+		<title>Domovoi: PiHole Enhanced Protection</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="nofollow" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/style.css" type="text/css">
+	</head>
+	<body>
+<div class="container">
+     <div class="col-md-10 blogShort">
+                     <h1>Domovoi: PiHole Enhanced Protection</h1>
+                     <p>Andy Zuelsdorf, 4 February 2022</p>
+		     <article>
+			<p>This article describes how I set up Domovoi, a Python and Bash repository that I created to enhance the protection offered by Pi-Hole. Domovoi will send text alerts via Twilio whenever PiHole detects that someone on the network has accessed a previously-unseen domain, and whether the request was permitted or blocked. Additionally, it can perform geolocation on the IP addresses returned by the downstream DNS server to decide whether a DNS query should be blocked or permitted based on which country corresponds to the IP address. The repository is named after Domovoi, the butler of the titular character and protagonist of the Artemis Fowl novels by Eoin Colfer, some of my favorite novels.</p>
+			<h3>Problem: Taming DNS Request Overload</h3>
+			<p>A few months ago, I started using PiHole on my home network. It was very useful for blocking advertisements on my devices that don't have ad-blockers available. I noticed my streaming services' quality improve just from blocking requests to several domains that were purely for advertising purposes. However, since PiHole operates on a blacklist/whitelist system for domain names or patterns of domain names, it occasionally blocked websites that I needed to access. When this happened, I had to log into the Pi-Hole admin console and iteratively filter by time to see which new sites were blocked only recently, which was time-consuming and led to some false positives.</p>
+			<p>Additionally, in searching through these requests, I found that making a request to one website in a web browser or using an app on a smartphone often would result in requests to multiple publicly registered domains, such as content delivery networks' domains, and some of these were clearly advertising-centric domains that Pi-Hole was not blocking. I did not consciously sent requests to these websites, and some of them were only for advertisting purposes, but some of them were necessary for the websites I had interest in to function as intended. I realized that the volume of requests meant analyzing each request was not feasible for me, but I didn't want to give up and permit the permitted advertising sites.</p>
+			<p>In short, I needed a way to find out which previously-unseen domains I had made requests to, and whether those domains were permitted or blocked, with as little manual use of the PiHole admin interface as possible.</p>
+			<h3>Solution: Text Alerts for Previously Unseen or Seldom-Seen Websites</h3>
+			<p>The solution I pursued was to create a separate process that ran on a cron job on my raspberry pi. This job, on its first invocation, logged into the PiHole admin interface, downloaded the last 30 days worth of DNS queries (both blocked and allowed) and cached this information in two files. Then, every five minutes, the cron job would spin back up, log into the PiHole admin interface again, request all the DNS queries from the timestamp to the current time, and compare this list with the list of cached DNS queries on disk. If there were any permitted DNS queries whose publicly registered domain names (e.g., tumblr.com or go.com) were not in the list of the last 30 days' previously permitted queries, then a text would be sent to my phone with the list of previously unseen, publicly registered domain names. Additionally, any previouly-unseen blocked queries whose fully qualified domain names (e.g., ladygaga.tumblr.com or abcnews.go.com) had not been seen in the cached blocked domains list would be included in a separate text message. This comprised half of what Domovoi did, but another challenge quickly arose from the information these messages uncovered.</p>
+			<h3>Problem: Blocking Connections to Untrusted Countries</h3>
+			<p>I had been using Domovoi for several weeks when I got a text that Domovoi had seen a request to the previously-unseen domain of adtarget.com.tr recently. The '.tr' intrigued me, as I had not seen the '.tr' country code before. Upon looking up the domain at duckduckgo.com, I found that adtarget.com.tr was a Turkish domain for an advertising service. This domain had been permitted by Pi-Hole, which was already bad enough, but I realized that I could have been unintentionally making requests to more nefarious countries than Turkey all this time without even knowing it. I was uncomfortable with this, and although Pi-Hole does not support IP geolocation blocking (that's more of a job for a firewall), I wanted to see if I could tack it on anyway.</p>
+			<h3>Solution: DNS resolver with IP Geolocation</h3>
+			<p>...</p>
+			<h2>Caveats and Future work</h2>
+			<p>...</p>
+			<p>Copyright 2022 Andrew Zuelsdorf. All rights reserved.</p>
+                     </article>
+                 </div>
+	</div>
+</div>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	</body>
+</html>
