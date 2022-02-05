@@ -10,7 +10,7 @@
 <div class="container">
      <div class="col-md-10 blogShort">
                      <h1>Domovoi: PiHole Enhanced Protection</h1>
-                     <p>Andy Zuelsdorf, 4 February 2022</p>
+                     <p>Andy Zuelsdorf, 5 February 2022</p>
 		     <article>
 			<p>This article describes how I set up Domovoi, a Python and Bash repository that I created to enhance the protection offered by Pi-Hole. Domovoi will send text alerts via Twilio whenever PiHole detects that someone on the network has accessed a previously-unseen or seldom-seen domain, and whether the request was permitted or blocked. Additionally, it can perform geolocation on the IP addresses returned by the downstream DNS server to decide whether a DNS query should be blocked or permitted based on which country corresponds to the IP address. The repository is named after Domovoi, the butler and bodyguard of the titular character and protagonist of the Artemis Fowl novels by Eoin Colfer, some of my favorite novels.</p>
 			<h3>Problem: Taming DNS Request Overload</h3>
