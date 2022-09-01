@@ -5,6 +5,7 @@
     <link>https://awzuelsdorf.github.io/categories/</link>
     <description>Recent content in Categories on Andy Zuelsdorf&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://awzuelsdorf.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <copyright>Copyright 2022 Andrew Zuelsdorf. All rights reserved.</copyright><atom:link href="https://awzuelsdorf.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
